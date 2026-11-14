@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#C8102E;--red-dk:#8E0B20;--ink:#111214;--ink2:#1d1f23;--gray:#5d6168;--line:#e3e4e8;--soft:#f4f4f6;--gold:#f9b91a;--green:#1f8a4c}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--soft);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.d{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.02em;margin:0}
+.top{background:var(--ink);color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.top a{color:#fff;text-decoration:none;font-family:Oswald;letter-spacing:.06em;text-transform:uppercase;font-size:.9rem;opacity:.8}
+.brand{display:flex;align-items:center;gap:10px}.brand img{width:40px}.brand b{font-family:Oswald;font-size:1.25rem;letter-spacing:.03em}.brand span{display:block;font-size:.7rem;color:var(--red);letter-spacing:.18em;font-weight:700}
+.stripe{height:6px;background:var(--red)}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 18px 60px}
+.who{font-size:.85rem;color:var(--gray);margin-bottom:6px}
+.qlinks{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.qlinks a{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;text-decoration:none;border-radius:30px;padding:.45em 1em;font-family:Oswald;text-transform:uppercase;letter-spacing:.06em;font-size:.85rem}.qlinks a:hover{background:var(--red-dk)}
+.hero{background:var(--ink);color:#fff;border-radius:10px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;border-bottom:6px solid var(--red)}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1}
+.eyebrow{font-family:Oswald;letter-spacing:.18em;text-transform:uppercase;font-size:.8rem;color:var(--gold)}
+.badge{display:inline-block;margin-top:12px;padding:.45em 1em;border-radius:40px;font-family:Oswald;letter-spacing:.08em;text-transform:uppercase;font-size:.95rem;background:#34373d;color:#fff}
+.badge.ok{background:var(--green)}.badge.no{background:var(--red)}
+.pts{text-align:center;background:var(--ink2);border-radius:10px;padding:16px 26px}
+.pts b{display:block;font-family:Oswald;font-size:3.4rem;line-height:1;color:#fff}.pts span{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#c9ccd3}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.tile{background:#fff;border:1px solid var(--line);border-top:4px solid var(--red);border-radius:8px;padding:16px}
+.tile b{display:block;font-family:Oswald;font-size:2rem;line-height:1.1}.tile span{font-size:.78rem;color:var(--gray);letter-spacing:.08em;text-transform:uppercase}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;margin-top:18px}
+.card h2{font-size:1.3rem;margin-bottom:14px}
+.meter{margin:12px 0 18px}.meter .lbl{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:6px}.meter .lbl b{font-weight:700}
+.bar{height:12px;background:var(--soft);border-radius:8px;position:relative;overflow:visible}
+.bar i{display:block;height:100%;border-radius:8px;background:var(--green)}.bar i.warn{background:var(--red)}
+.bar em{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+.note{font-size:.82rem;color:var(--gray)}
+table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}
+th{font-family:Oswald;text-transform:uppercase;letter-spacing:.06em;font-weight:500;font-size:.8rem;color:var(--gray);cursor:pointer;white-space:nowrap}
+td.r,th.r{text-align:right}.st{font-family:Oswald;font-size:.8rem;letter-spacing:.06em;padding:.25em .7em;border-radius:30px;background:var(--soft);white-space:nowrap}
+.st.ok{background:#e3f4ea;color:var(--green)}.st.no{background:#fbe5e8;color:var(--red)}
+.snap{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.snap div{background:var(--soft);border-radius:8px;padding:12px}.snap b{display:block;font-family:Oswald;font-size:1.5rem}.snap span{font-size:.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:.08em}
+input.search{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;margin-bottom:10px}
+.msg{background:#fff;border:1px solid var(--line);border-left:5px solid var(--red);border-radius:8px;padding:24px;margin-top:10px}
+.msg h2{font-size:1.4rem;margin-bottom:8px}
+.load{text-align:center;padding:80px 0;color:var(--gray);font-family:Oswald;letter-spacing:.1em;text-transform:uppercase}
+.tabs{display:flex;gap:8px;margin:18px 0 0;flex-wrap:wrap}.tabs button{flex:1;min-width:140px;padding:12px;border:0;border-radius:8px;background:#fff;border:1px solid var(--line);font-family:Oswald;text-transform:uppercase;letter-spacing:.06em;font-size:1rem;cursor:pointer;color:var(--ink)}.tabs button.on{background:var(--red);border-color:var(--red);color:#fff}
+.seg{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.seg button{padding:12px 8px;border:1px solid var(--line);border-radius:8px;background:var(--soft);font:600 .9rem Inter,sans-serif;cursor:pointer;color:var(--ink)}.seg button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}.row label{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+input.dt{padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.chips button{border:1px solid var(--line);background:#fff;border-radius:30px;padding:.35em .9em;font:500 .8rem Inter,sans-serif;cursor:pointer}.chips button.on{border-color:var(--red);color:var(--red)}
+.state{margin-top:14px;padding:10px 14px;border-radius:8px;font-size:.9rem;background:#eef4ff;color:#1c3f8a}.state.edit{background:#fff6dd;color:#7a5600}
+.roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-top:14px}
+.roster button{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:14px;border:2px solid var(--line);border-radius:10px;background:#fff;font:600 .95rem Inter,sans-serif;cursor:pointer;text-align:left;color:var(--ink)}
+.roster button i{font-style:normal;font-family:Oswald;font-size:.75rem;letter-spacing:.08em;padding:.2em .6em;border-radius:20px;background:var(--soft);color:var(--gray)}
+.roster button.p{border-color:var(--green);background:#e9f7ef}.roster button.p i{background:var(--green);color:#fff}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}.tools button,.btn{padding:10px 16px;border-radius:8px;border:1px solid var(--line);background:#fff;font:600 .88rem Inter,sans-serif;cursor:pointer}
+.btn.go{background:var(--red);border-color:var(--red);color:#fff;font-family:Oswald;letter-spacing:.08em;text-transform:uppercase;font-size:1.05rem;padding:14px 28px}.btn.go:disabled{opacity:.5}
+textarea.nt{width:100%;min-height:60px;margin-top:14px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.count{font-family:Oswald;font-size:1.1rem;margin-left:auto}
+.toast{margin-top:12px;padding:12px 14px;border-radius:8px;background:#e3f4ea;color:var(--green);font-weight:600}.toast.err{background:#fbe5e8;color:var(--red)}
+select.dt{padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;min-width:140px}
+.wp{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:6px}.wp label{display:block;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:6px}.wp select,.wp input{width:100%}
+@media(max-width:700px){.wp{grid-template-columns:1fr}}
+.hb{border-left:5px solid var(--red)}.hb.done{border-left-color:var(--green)}.hb .ck{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:.95rem}.hb .ck input{width:20px;height:20px;margin-top:2px;accent-color:var(--red)}.hb .sig{width:100%;max-width:360px;margin-top:12px}.hb .btn.dl{display:inline-block;text-decoration:none;color:var(--ink)}
+@media(max-width:700px){.seg{grid-template-columns:1fr 1fr}.roster{grid-template-columns:1fr 1fr}.roster button{padding:12px 10px;font-size:.88rem}}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.tiles{grid-template-columns:1fr 1fr}.snap{grid-template-columns:1fr 1fr}.hide-sm{display:none}}
+.dp .dchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}.dp .dchip{font-family:Oswald;letter-spacing:.06em;padding:.35em .9em;border-radius:30px;background:#34373d;color:#fff;font-size:.95rem}.dp .dchip.lo{background:var(--red)}
+.dp .pts small{display:block;font-size:.72rem;color:#c9ccd3;margin-top:6px;letter-spacing:.04em;text-transform:none}
+.dp .tiles.t4{grid-template-columns:repeat(4,1fr)}.dp .tile small{display:block;font-size:.78rem;color:var(--gray);margin-top:4px}
+.dp .chart{width:100%;height:auto;display:block}.dp .chart text{font-family:Inter,sans-serif;font-size:12px;fill:var(--gray)}
+.dp .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--gray);margin-top:8px}.dp .legend i{display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:6px;background:var(--red)}.dp .legend i.d{background:repeating-linear-gradient(90deg,var(--gray) 0 4px,transparent 4px 7px)}.dp .legend i.t{background:var(--ink);width:3px;height:12px}
+.dp tr.now td{background:#fdf0f2;font-weight:600}.dp tr.comp td{border-top:2px solid var(--red);border-bottom:2px solid var(--red)}.dp .tag.comp{background:var(--ink);color:#fff;margin-left:4px}.dp tr.past td{color:#9a9da3}.dp tr.mile td{background:var(--soft);font-size:.82rem;color:var(--gray);text-align:center;font-style:italic}
+.dp .tag{font-family:Oswald;font-size:.75rem;letter-spacing:.06em;padding:.2em .6em;border-radius:30px;background:var(--soft);color:var(--gray)}.dp .tag.now{background:var(--red);color:#fff}.dp .tag.done{background:#e3f4ea;color:var(--green)}
+.dp select.pick{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;margin-bottom:14px;background:#fff}
+.dp td.nw{white-space:nowrap}.dp tr.click{cursor:pointer}.dp tr.click:hover td{background:var(--soft)}
+@media(max-width:700px){.dp .tiles.t4{grid-template-columns:1fr 1fr}}
+.dp.dpc{display:grid;grid-template-columns:250px 1fr;gap:18px;align-items:start}.dpl{position:sticky;top:12px;padding:16px;max-height:calc(100vh - 24px);overflow:auto}.dpl h2{font-size:1.1rem;margin-bottom:10px}.dpn{display:flex;flex-direction:column;gap:4px}.dpn button{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;padding:10px 12px;border:1px solid transparent;border-radius:8px;background:none;font:500 .92rem Inter,sans-serif;color:var(--ink);cursor:pointer;text-align:left}.dpn button:hover{background:var(--soft)}.dpn button span{font-size:.78rem;color:var(--gray);white-space:nowrap}.dpn button.on{background:var(--red);color:#fff}.dpn button.on span{color:#fde3e7}.dpr{margin-top:18px;min-width:0}
+@media(max-width:700px){.dp.dpc{grid-template-columns:1fr}.dpl{position:static;max-height:none}.dpn{display:grid;grid-template-columns:1fr 1fr}.dpn button span{display:none}.dpr{margin-top:0}}
+</style>
+</head>
+<body>
+<div class="top"><div class="brand"><? if (LOGO_URL) { ?><img src="<?= LOGO_URL ?>" alt=""><? } ?><div><b><?= TEAM_NAME.toUpperCase() ?></b><span>IRONMAN PORTAL</span></div></div></div>
+<div class="stripe"></div>
+<div class="wrap" id="app"><div class="load">Loading your Ironman stats…</div></div>
+
+<script>
+var TEAM=<?!= JSON.stringify(TEAM_NAME) ?>, COACH=<?!= JSON.stringify(HEAD_COACH) ?>, DOMAIN=<?!= JSON.stringify(SCHOOL_DOMAIN) ?>;
+var app = document.getElementById('app');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function num(s){var n=parseFloat(String(s).replace(/[^0-9.\-]/g,''));return isNaN(n)?null:n}
+function stCls(s){s=String(s).toUpperCase();if(/NOT/.test(s)&&!/STARTED/.test(s))return 'no';if(/IRONMAN|ON TRACK|YES/.test(s))return 'ok';if(/OFF|NO\b|LOST|MISSED/.test(s))return 'no';return ''}
+
+var wData=null, wTab='';
+function wrestler(d){
+  wData=d;
+  var m=d.me, hasPlan=!!(d.descent||d.descentLocked);
+  var tabs=[];
+  if(m)tabs.push(['im','Ironman']);
+  tabs.push(['hb','Handbook']);
+  if(hasPlan)tabs.push(['dp','Descent Plan']);
+  if(!wTab||!tabs.some(function(t){return t[0]===wTab}))wTab=tabs[0][0];
+  var name=m?m.name:(d.descent?d.descent.name:'');
+  var h='<div class="who">Signed in as '+esc(d.email)+'</div>'+
+   (m?'<div class="hero"><div><div class="eyebrow">Ironman Tracker</div><h1>'+esc(m.name)+'</h1><div class="badge '+stCls(m.status)+'">'+esc(m.status||'—')+'</div></div>'+
+     '<div class="pts"><b>'+esc(m.total||0)+'</b><span>Total Points</span></div></div>'
+    :(name?'<div class="hero"><div><div class="eyebrow">Wrestler Portal</div><h1>'+esc(name)+'</h1></div></div>':''))+
+   (tabs.length>1?'<div class="tabs">'+tabs.map(function(t){return '<button id="wt-'+t[0]+'" onclick="wShow(\''+t[0]+'\')">'+t[1]+'</button>'}).join('')+'</div>':'')+
+   (m?'<div id="wp-im">'+ironmanPane(d)+'</div>':'')+
+   '<div id="wp-hb"><div class="card hb" id="hbCard"><h2>Team Handbook</h2><div class="note">Loading…</div></div></div>'+
+   (hasPlan?'<div id="wp-dp">'+(d.descent?'<div class="dp" style="margin-top:18px">'+descentView(d.descent,d.descentNotes)+'</div>':dpLocked())+'</div>':'');
+  app.innerHTML=h;
+  wShow(wTab);
+  hbLoad();
+}
+function wShow(t){
+  wTab=t;
+  ['im','hb','dp'].forEach(function(k){
+    var b=document.getElementById('wt-'+k), p=document.getElementById('wp-'+k);
+    if(b)b.className=k===t?'on':'';
+    if(p)p.style.display=k===t?'':'none';
+  });
+}
+function ironmanPane(d){
+  var m=d.me,s=d.settings||{};
+  var minPct=num(s['Minimum Practice Attendance %'])||95, maxAbs=num(s['Maximum Practice Absences']);
+  var pct=num(m.pct), abs=num(m.absent)||0;
+  var pp=num(s['Practice points - Present'])||0, op=num(s['Open Mat points - Present'])||0, kp=num(s['Kids Club Help points - Present'])||0;
+  return '<div class="tiles">'+
+   '<div class="tile"><b>'+esc(m.present||0)+'</b><span>Practices Present</span></div>'+
+   '<div class="tile"><b>'+esc(m.absent||0)+'</b><span>Practices Absent</span></div>'+
+   '<div class="tile"><b>'+esc(m.pct||'—')+'</b><span>Practice Attendance</span></div>'+
+   '<div class="tile"><b>'+esc(m.openmat||0)+'</b><span>Open Mats</span></div>'+
+   '<div class="tile"><b>'+esc(m.kids||0)+'</b><span>Kids Club Help</span></div>'+
+   '<div class="tile"><b>'+esc(m.youth||'—')+'</b><span>Youth Tournament</span></div>'+
+  '</div>'+
+  (d.team&&d.team['Power/Speed Sessions']!=null?'<div class="card"><div class="meter"><div class="lbl"><span>Power/Speed</span><b>'+esc(m.power||0)+' <span class="note">of '+esc(d.team['Power/Speed Sessions'])+' sessions</span></b></div><p class="note">Tracked for coaches. It doesn\'t change your Ironman points.</p></div></div>':'')+
+  '<div class="card"><h2>Ironman Requirements</h2>'+
+   '<div class="meter"><div class="lbl"><span>Practice attendance</span><b>'+(pct==null?'Season not started':esc(m.pct))+' <span class="note">/ '+minPct+'% needed</span></b></div>'+
+   '<div class="bar"><i class="'+(pct!=null&&pct<minPct?'warn':'')+'" style="width:'+Math.min(100,pct||0)+'%"></i><em style="left:'+minPct+'%"></em></div></div>'+
+   (maxAbs!=null?'<div class="meter"><div class="lbl"><span>Practice absences</span><b>'+abs+' <span class="note">/ '+maxAbs+' max</span></b></div>'+
+   '<div class="bar"><i class="'+(abs>maxAbs?'warn':'')+'" style="width:'+Math.min(100,abs/(maxAbs||1)*100)+'%"></i></div></div>':'')+
+  '</div>'+
+  '<div class="card"><h2>How Your Points Add Up</h2><table>'+
+   '<tr><td>Practices present</td><td class="r">'+esc(m.present||0)+' × '+pp+'</td><td class="r"><b>'+((num(m.present)||0)*pp)+'</b></td></tr>'+
+   '<tr><td>Open mats</td><td class="r">'+esc(m.openmat||0)+' × '+op+'</td><td class="r"><b>'+((num(m.openmat)||0)*op)+'</b></td></tr>'+
+   '<tr><td>Kids Club help</td><td class="r">'+esc(m.kids||0)+' × '+kp+'</td><td class="r"><b>'+((num(m.kids)||0)*kp)+'</b></td></tr>'+
+   '<tr><td>Penalty</td><td class="r"></td><td class="r"><b>'+esc(m.penalty||0)+'</b></td></tr>'+
+   '<tr><td><b>Total</b></td><td></td><td class="r"><b>'+esc(m.total||0)+'</b></td></tr>'+
+  '</table><p class="note" style="margin-top:12px">Missing the Kids Club youth tournament is '+esc(s['Kids Club Tournament - Absent penalty']||'')+' points. Stats update automatically when coaches take attendance. Last checked '+esc(d.updated)+'.</p></div>'+
+  teamSnap(d.team);
+}
+
+/* ---------- descent plan ---------- */
+function dpLocked(){return '<div class="card" style="border-left:5px solid var(--red)"><div class="eyebrow" style="color:var(--red);margin-bottom:8px">Your Weight Descent Plan</div><h2>Locked</h2><p style="margin:0 0 14px">Your descent plan unlocks as soon as you sign off on the Team Handbook.</p><button class="btn go" onclick="wShow(\'hb\')">Go to Handbook</button></div>'}
+function reloadMe(){google.script.run.withSuccessHandler(function(d){if(!d.error&&d.role==='wrestler'){if(d.descent)wTab='dp';wrestler(d)}else hbLoad()}).withFailureHandler(function(){hbLoad()}).getPortalData()}
+function dPd(s){var m=String(s).match(/(\d+)\/(\d+)\/(\d+)/);return m?new Date(+m[3],m[1]-1,+m[2]):null}
+var D_MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function dFd(d){return D_MON[d.getMonth()]+' '+d.getDate()}
+function dLb(n){n=Number(n);return (Math.round(n*10)/10).toFixed(n%1?1:0)}
+function dToday(){var t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate())}
+
+function dCur(p){var t=dToday(),i=-1;p.steps.forEach(function(s,k){var d=dPd(s.date);if(d&&d<=t)i=k});return i}
+
+function descentView(p, notes){
+  if(!p||!p.steps||!p.steps.length)return '<div class="msg"><h2>No descent plan yet</h2><p>You don\'t have a weight descent plan on file. If you think you should, talk to '+esc(COACH)+'.</p></div>';
+  notes=notes||{};
+  var i=dCur(p), cur=p.steps[Math.max(i,0)], started=i>=0, t=dToday();
+  var next=null;for(var k=i+1;k<p.steps.length;k++){if(p.steps[k].weight<cur.weight){next=p.steps[k];break}}
+  var comp=dPd(notes['First competition']||''), lock=dPd(notes['Minimum weight locked']||''), grow=dPd(notes['Growth allowance date']||''), growLbs=notes['Growth allowance lbs']||'2';
+  var daysLock=lock?Math.ceil((lock-t)/864e5):null;
+  var lowest=p.steps[p.steps.length-1];
+  var h='<div class="hero"><div><div class="eyebrow">Weight Descent Plan · '+(started?'Week of '+dFd(dPd(cur.date)):'Starts '+dFd(dPd(cur.date)))+'</div>'+
+    '<h1>'+dLb(cur.weight)+' lbs</h1><div class="note" style="color:#c9ccd3;margin-top:6px">Lowest eligible weight right now</div>'+
+    '<div class="dchips">'+cur.classes.map(function(c,j){return '<span class="dchip'+(j===0?' lo':'')+'">'+esc(c)+'</span>'}).join('')+'</div>'+
+    '<div class="note" style="color:#c9ccd3;margin-top:8px">Weight classes you can wrestle this week</div></div>'+
+    '<div class="pts"><b>'+esc(p.minClass)+'</b><span>Lowest Class Allowed</span><small>by end of plan</small></div></div>'+
+   '<div class="tiles t4">'+
+    '<div class="tile"><b>'+dLb(p.minWeight)+'</b><span>Minimum Weight</span><small>lowest you can certify</small></div>'+
+    '<div class="tile"><b>'+dLb(p.perWeek)+'</b><span>Max Drop / Week</span><small>lbs (NFHS 1.5% rule)</small></div>'+
+    '<div class="tile"><b>'+(next?dLb(next.weight):'—')+'</b><span>Next Step Down</span><small>'+(next?'Week of '+dFd(dPd(next.date)):'You\'re at your lowest class')+'</small></div>'+
+    '<div class="tile"><b>'+(daysLock==null?'—':daysLock>0?daysLock:'Locked')+'</b><span>'+(daysLock>0?'Days Until Weight Locks':'Minimum Weight')+'</span><small>'+(lock?dFd(lock)+', '+lock.getFullYear():'')+'</small></div>'+
+   '</div>'+
+   '<div class="card"><h2>Your Descent</h2>'+dChart(p,i,grow,lock,comp)+
+    '<div class="legend"><span><i></i>Lowest eligible weight</span><span><i class="d"></i>Minimum weight ('+dLb(p.minWeight)+')</span><span><i class="t"></i>Today</span></div></div>'+
+   '<div class="card"><h2>Week by Week</h2><table><tr><th>Week of</th><th class="r">Eligible Wt.</th><th class="r">Classes</th><th class="r hide-sm"></th></tr>';
+  var miles=[];if(grow)miles.push([grow,'+'+esc(growLbs)+' lb growth allowance · '+dFd(grow)]);if(lock)miles.push([lock,'Minimum wrestling weight locked · '+dFd(lock)]);
+  p.steps.forEach(function(s,k){
+    var d=dPd(s.date);
+    miles=miles.filter(function(m){if(m[0]<=d){h+='<tr class="mile"><td colspan="4">'+m[1]+'</td></tr>';return false}return true});
+    var st=k===i?'now':(k<i?'past':''), tag=k===i?'<span class="tag now">This week</span>':(k<i?'<span class="tag done">Done</span>':'');
+    var isComp=comp&&comp>=d&&comp<new Date(d.getTime()+7*864e5); if(isComp)st+=' comp';
+    h+='<tr class="'+st+'"><td class="nw">'+dFd(d)+(isComp?' <span class="tag comp">First meet '+D_MON[comp.getMonth()]+' '+comp.getDate()+'</span>':'')+'</td><td class="r">'+dLb(s.weight)+'</td><td class="r">'+esc(s.classes.join(', '))+'</td><td class="r hide-sm">'+tag+'</td></tr>';
+  });
+  miles.forEach(function(m){h+='<tr class="mile"><td colspan="4">'+m[1]+'</td></tr>'});
+  h+='</table><p class="note" style="margin-top:12px">This plan shows the <b>fastest</b> your weight is allowed to come down under NFHS rules (no more than 1.5% of body weight per week). It is a limit, not a goal. Eat, hydrate and sleep well, and talk to '+esc(COACH)+' before changing your weight class. Plan from Trackwrestling (IHSAA Weight Management Program).</p></div>';
+  return h;
+}
+
+function dChart(p,i,grow,lock,comp){
+  var sm=window.innerWidth<600, W=sm?420:900,H=sm?280:300,L=40,R=10,T=18,B=34;
+  var d0=dPd(p.steps[0].date), d1=dPd(p.steps[p.steps.length-1].date); d1=new Date(d1.getTime()+7*864e5);
+  var ws=p.steps.map(function(s){return s.weight}), hi=Math.max.apply(null,ws), lo=Math.min(Math.min.apply(null,ws),Number(p.minWeight));
+  var pad=Math.max(2,(hi-lo)*.12); hi+=pad; lo-=pad; if(hi-lo<8){hi+=4;lo-=4}
+  function x(d){return L+(d-d0)/(d1-d0)*(W-L-R)} function y(w){return T+(hi-w)/(hi-lo)*(H-T-B)}
+  var g='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Descent plan chart">';
+  var step=(hi-lo)>40?20:(hi-lo)>16?5:2;
+  for(var v=Math.ceil(lo/step)*step;v<=hi;v+=step){g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="#e3e4e8"/><text x="'+(L-8)+'" y="'+(y(v)+4)+'" text-anchor="end">'+v+'</text>'}
+  for(var m=new Date(d0.getFullYear(),d0.getMonth()+1,1);m<d1;m=new Date(m.getFullYear(),m.getMonth()+1,1)){g+='<line x1="'+x(m)+'" x2="'+x(m)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#f0f0f2"/><text x="'+x(m)+'" y="'+(H-12)+'" text-anchor="middle">'+D_MON[m.getMonth()]+'</text>'}
+  [[comp,'1st meet'],[grow,'Growth +'],[lock,'Locked']].forEach(function(a){if(!a[0])return;g+='<line x1="'+x(a[0])+'" x2="'+x(a[0])+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#9a9da3" stroke-dasharray="2 4"/><text x="'+(x(a[0])>W-70?x(a[0])-4:x(a[0])+4)+'" y="'+(T+10)+'" text-anchor="'+(x(a[0])>W-70?'end':'start')+'" style="font-size:11px">'+a[1]+'</text>'});
+  g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(p.minWeight)+'" y2="'+y(p.minWeight)+'" stroke="#5d6168" stroke-dasharray="5 4"/>';
+  var path='',area='';p.steps.forEach(function(s,k){var xx=x(dPd(s.date)),yy=y(s.weight);path+=(k?'H'+xx+'V'+yy:'M'+xx+' '+yy)});path+='H'+x(d1);
+  g+='<path d="'+path+'V'+(H-B)+'H'+L+'Z" fill="#C8102E" opacity=".07"/>';
+  g+='<path d="'+path+'" fill="none" stroke="#C8102E" stroke-width="3" stroke-linejoin="round"/>';
+  p.steps.forEach(function(s,k){var c=k===i;g+='<circle cx="'+x(dPd(s.date))+'" cy="'+y(s.weight)+'" r="'+(c?6:3.5)+'" fill="'+(c?'#C8102E':'#fff')+'" stroke="#C8102E" stroke-width="2"><title>Week of '+dFd(dPd(s.date))+': '+dLb(s.weight)+' lbs ('+esc(s.classes.join(', '))+')</title></circle>'});
+  var t=dToday();if(t>=d0&&t<=d1){g+='<line x1="'+x(t)+'" x2="'+x(t)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="#111214" stroke-width="2"/><text x="'+(x(t)+5)+'" y="'+(H-B-6)+'" style="font-weight:700;fill:#111214">Today</text>'}
+  return g+'</svg>';
+}
+
+var dpSel=0;
+function dpCoach(){
+  var d=coachData, ps=d.descents||[], el=document.getElementById('pane-dp');
+  if(!ps.length){el.innerHTML='<div class="card"><h2>Descent Plans</h2><p>No plans on the Descent Plans tab yet.</p></div>';return}
+  if(dpSel>=ps.length)dpSel=0;
+  el.innerHTML='<div class="dp dpc"><div class="card dpl"><h2>Wrestlers</h2><div class="dpn">'+
+    ps.map(function(p,k){var c=p.steps[Math.max(dCur(p),0)]||{classes:[]};
+      return '<button id="dpn'+k+'" onclick="dpPick('+k+')"><b>'+esc(p.name)+'</b><span>'+(c.weight!=null?dLb(c.weight)+' · '+esc(c.classes[0]||''):'')+'</span></button>'}).join('')+
+    '</div><p class="note" style="margin-top:12px">This week\'s lowest eligible weight · lowest class. Plans come from the Descent Plans tab of the tracker.</p></div>'+
+    '<div class="dpr" id="dpOne"></div></div>';
+  dpPick(dpSel,true);
+}
+function dpPick(k,noScroll){
+  dpSel=+k;
+  var ps=coachData.descents||[];
+  ps.forEach(function(p,j){var b=document.getElementById('dpn'+j);if(b)b.className=j===dpSel?'on':''});
+  var o=document.getElementById('dpOne');
+  o.innerHTML=descentView(ps[dpSel],coachData.descentNotes);
+  if(!noScroll&&window.innerWidth<=700)o.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ---------- handbook sign-off (wrestler) ---------- */
+function hbLoad(){
+  google.script.run.withSuccessHandler(hbDraw).withFailureHandler(function(e){document.getElementById('hbCard').innerHTML='<h2>Team Handbook</h2><div class="toast err">'+esc(e.message)+'</div>'}).getHandbook();
+}
+function hbDraw(d){
+  var c=document.getElementById('hbCard');
+  if(d.signed){c.className='card hb done';c.innerHTML='<h2>Team Handbook ✓</h2><p class="note" style="margin-top:-6px">You signed off on the '+esc(d.season)+' handbook on '+esc(d.signed)+'.</p><div class="tools"><a class="btn dl" href="'+esc(d.url)+'" target="_blank">View Handbook</a></div>';return}
+  c.className='card hb';
+  c.innerHTML='<h2>Team Handbook Sign-Off</h2><p style="margin:-4px 0 10px">Read the '+esc(d.season)+' '+esc(TEAM)+' Handbook, then sign below. <b>Required for every wrestler.</b></p>'+
+   '<div class="tools"><a class="btn dl" href="'+esc(d.url)+'" target="_blank">Open the Handbook (PDF)</a></div>'+
+   '<label class="ck"><input type="checkbox" id="hbOk"><span>I have read the '+esc(d.season)+' '+esc(TEAM)+' Handbook and agree to follow it.</span></label>'+
+   '<input class="dt sig" id="hbSig" placeholder="Type your full name to sign" autocomplete="off">'+
+   '<div class="tools"><button class="btn go" id="hbBtn" onclick="hbSign()">Sign Off</button></div><div id="hbMsg"></div>';
+}
+function hbSign(){
+  var m=document.getElementById('hbMsg');
+  if(!document.getElementById('hbOk').checked){m.innerHTML='<div class="toast err">Check the box to confirm you read the handbook.</div>';return}
+  var sig=document.getElementById('hbSig').value.trim();
+  if(sig.length<3){m.innerHTML='<div class="toast err">Type your full name to sign.</div>';return}
+  var b=document.getElementById('hbBtn');b.disabled=true;b.textContent='Saving…';
+  google.script.run.withSuccessHandler(function(){reloadMe()}).withFailureHandler(function(e){b.disabled=false;b.textContent='Sign Off';m.innerHTML='<div class="toast err">Not saved: '+esc(e.message)+'</div>'}).signHandbook(sig);
+}
+
+/* ---------- weight class plan (wrestler) ---------- */
+function wpLoad(){
+  google.script.run.withSuccessHandler(wpDraw).withFailureHandler(function(e){document.getElementById('wpCard').innerHTML='<h2>Weight Class Plan</h2><div class="toast err">'+esc(e.message)+'</div>'}).getWeightPlan();
+}
+function wpOpts(cls,val){return '<option value="">Choose…</option>'+cls.map(function(c){return '<option'+(String(val)===c?' selected':'')+'>'+c+'</option>'}).join('')}
+function wpDraw(d){
+  var p=d.plan||{};
+  document.getElementById('wpCard').innerHTML='<h2>Weight Class Plan</h2>'+
+   '<p class="note" style="margin-top:-6px">What weight do you plan to wrestle? After Christmas break everyone gets a 2 lb growth allowance.</p>'+
+   (d.plan?'<div class="state edit">Your plan is saved: <b>'+esc(p.before)+'</b> before Christmas, <b>'+esc(p.after)+'</b> after. You can change it below any time.</div>':'')+
+   '<div class="wp" style="margin-top:14px"><div><label for="wpB">Before Christmas</label><select class="dt" id="wpB">'+wpOpts(d.classes,p.before)+'</select></div>'+
+   '<div><label for="wpA">After Christmas</label><select class="dt" id="wpA">'+wpOpts(d.classes,p.after)+'</select></div>'+
+   '<div><label for="wpC">Current weight (lbs)</label><input class="dt" id="wpC" inputmode="decimal" placeholder="Optional" value="'+esc(p.current)+'"></div></div>'+
+   '<textarea class="nt" id="wpN" placeholder="Notes for coaches (optional)">'+esc(p.notes)+'</textarea>'+
+   '<div class="tools"><button class="btn go" id="wpBtn" onclick="wpSave()">'+(d.plan?'Update My Plan':'Submit My Plan')+'</button></div><div id="wpMsg"></div>';
+}
+function wpSave(){
+  var b=document.getElementById('wpBtn'),B=document.getElementById('wpB').value,A=document.getElementById('wpA').value;
+  if(!B||!A){document.getElementById('wpMsg').innerHTML='<div class="toast err">Pick a weight class for both before and after Christmas.</div>';return}
+  b.disabled=true;b.textContent='Saving…';
+  google.script.run.withSuccessHandler(function(){wpLoad();}).withFailureHandler(function(e){b.disabled=false;b.textContent='Submit My Plan';document.getElementById('wpMsg').innerHTML='<div class="toast err">Not saved: '+esc(e.message)+'</div>'})
+  .saveWeightPlan(B,A,document.getElementById('wpC').value,document.getElementById('wpN').value);
+}
+
+function teamSnap(t){
+  if(!t)return '';
+  return '<div class="card"><h2>Team Snapshot</h2><div class="snap">'+
+   ['Current Ironmen','Wrestlers Tracked','Practice Sessions','Team Practice %'].map(function(k){return '<div><b>'+esc(t[k]||'—')+'</b><span>'+k+'</span></div>'}).join('')+'</div></div>';
+}
+
+var coachData, sortKey='total', sortDir=-1, coachTab='att';
+function coach(d){
+  coachData=d;
+  app.innerHTML='<div class="who">Signed in as '+esc(d.email)+' · Coach view</div>'+
+   '<div class="hero"><div><div class="eyebrow">Coach View</div><h1>Team Ironman</h1><div class="qlinks"></div></div><div class="pts"><b>'+esc(d.team['Current Ironmen']||0)+'</b><span>Current Ironmen</span></div></div>'+
+   '<div class="tabs"><button id="t-att" onclick="showTab(\'att\')">Take Attendance</button><button id="t-team" onclick="showTab(\'team\')">Team Ironman</button><button id="t-hb" onclick="showTab(\'hb\')">Handbook</button><button id="t-dp" onclick="showTab(\'dp\')">Descent Plans</button></div>'+
+   '<div id="pane-att"></div><div id="pane-hb"></div><div id="pane-dp"></div>'+
+   '<div id="pane-team">'+teamSnap(d.team)+
+   '<div class="card"><h2>All Wrestlers</h2><input class="search" placeholder="Search wrestler…" oninput="drawTable(this.value)"><div id="tbl"></div></div></div>';
+  drawTable('');
+  showTab(coachTab);
+}
+function showTab(t){
+  coachTab=t;
+  document.getElementById('t-att').className=t==='att'?'on':'';
+  document.getElementById('t-team').className=t==='team'?'on':'';
+  document.getElementById('pane-att').style.display=t==='att'?'':'none';
+  document.getElementById('pane-team').style.display=t==='team'?'':'none';
+  if(t==='att'&&!att.loaded)attInit();
+  document.getElementById('t-hb').className=t==='hb'?'on':'';
+  document.getElementById('pane-hb').style.display=t==='hb'?'':'none';
+  if(t==='hb')hbCoach();
+  document.getElementById('t-dp').className=t==='dp'?'on':'';
+  document.getElementById('pane-dp').style.display=t==='dp'?'':'none';
+  if(t==='dp')dpCoach();
+}
+function hbCoach(){
+  var el=document.getElementById('pane-hb');el.innerHTML='<div class="card"><div class="load" style="padding:30px 0">Loading…</div></div>';
+  google.script.run.withSuccessHandler(function(d){
+    el.innerHTML='<div class="card"><h2>Handbook Sign-Off · '+esc(d.season)+'</h2><p class="note" style="margin-top:-6px">'+d.signed.length+' of '+(d.signed.length+d.missing.length)+' signed. <a href="'+esc(d.url)+'" target="_blank">View handbook</a></p>'+
+     (d.missing.length?'<p style="margin-top:10px"><b style="color:var(--red)">Not signed ('+d.missing.length+'):</b> '+d.missing.map(esc).join(', ')+'</p>':'<div class="toast">Everyone has signed.</div>')+
+     (d.signed.length?'<table style="margin-top:14px"><tr><th>Wrestler</th><th class="r">Signed</th></tr>'+d.signed.map(function(x){return '<tr><td><b>'+esc(x.name)+'</b></td><td class="r">'+esc(x.when)+'</td></tr>'}).join('')+'</table>':'')+'</div>';
+  }).withFailureHandler(function(e){el.innerHTML='<div class="toast err">'+esc(e.message)+'</div>'}).getHandbookList();
+}
+function wpCoach(){
+  var el=document.getElementById('pane-wt');el.innerHTML='<div class="card"><div class="load" style="padding:30px 0">Loading…</div></div>';
+  google.script.run.withSuccessHandler(function(d){
+    var rows=d.plans.slice().sort(function(a,b){return (+a.before||999)-(+b.before||999)});
+    el.innerHTML='<div class="card"><h2>Weight Class Plans</h2><p class="note" style="margin-top:-6px">'+d.plans.length+' submitted. <a href="'+esc(d.url)+'" target="_blank">Open the spreadsheet</a></p>'+
+     '<table><tr><th>Wrestler</th><th class="r">Before Xmas</th><th class="r">After Xmas</th><th class="r hide-sm">Current</th><th class="hide-sm">Notes</th></tr>'+
+     rows.map(function(r){return '<tr><td><b>'+esc(r.name)+'</b></td><td class="r">'+esc(r.before)+'</td><td class="r">'+esc(r.after)+'</td><td class="r hide-sm">'+esc(r.current)+'</td><td class="hide-sm note">'+esc(r.notes)+'</td></tr>'}).join('')+'</table>'+
+     (d.missing.length?'<p class="note" style="margin-top:14px"><b>Not submitted yet ('+d.missing.length+'):</b> '+d.missing.map(esc).join(', ')+'</p>':'')+'</div>';
+  }).withFailureHandler(function(e){el.innerHTML='<div class="toast err">'+esc(e.message)+'</div>'}).getWeightPlans();
+}
+
+/* ---------- attendance ---------- */
+var KINDS=[['practice','Practice'],['openmat','Open Mat'],['power','Power/Speed'],['kidshelp','Youth Practice'],['kidstourn','Youth Tournament']];
+var att={kind:'practice',date:today(),loaded:false,data:null,marks:{},dirty:false};
+function today(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+function prettyDate(k){var p=k.split('-');return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'})}
+function attInit(){
+  document.getElementById('pane-att').innerHTML='<div class="card"><h2>Take Attendance</h2>'+
+   '<div class="seg" id="kinds">'+KINDS.map(function(k){return '<button data-k="'+k[0]+'" onclick="pickKind(\''+k[0]+'\')">'+k[1]+'</button>'}).join('')+'</div>'+
+   '<div class="row"><label for="attDate">Date</label><input type="date" class="dt" id="attDate" value="'+att.date+'" onchange="pickDate(this.value)"></div>'+
+   '<div class="chips" id="recent"></div><div id="attBody"><div class="load" style="padding:30px 0">Loading roster…</div></div></div>';
+  att.loaded=true; markKinds(); loadAtt();
+}
+function markKinds(){[].forEach.call(document.querySelectorAll('#kinds button'),function(b){b.className=b.getAttribute('data-k')===att.kind?'on':''})}
+function okToLeave(){return !att.dirty||confirmLeave()}
+function confirmLeave(){var el=document.getElementById('attMsg');if(att.warned){att.warned=false;return true}att.warned=true;if(el)el.innerHTML='<div class="toast err">You have unsaved changes. Tap again to discard them, or hit Save first.</div>';return false}
+function pickKind(k){if(k===att.kind||!okToLeave())return;att.kind=k;markKinds();loadAtt()}
+function pickDate(v){if(!v)return;if(!okToLeave()){document.getElementById('attDate').value=att.date;return}att.date=v;document.getElementById('attDate').value=v;loadAtt()}
+function loadAtt(){
+  att.dirty=false;att.warned=false;
+  document.getElementById('attBody').innerHTML='<div class="load" style="padding:30px 0">Loading…</div>';
+  google.script.run.withSuccessHandler(function(d){
+    att.data=d;att.marks={};d.names.forEach(function(n){att.marks[n]=d.marks[n]==='Present'?'Present':''});
+    drawRecent();drawAtt();
+  }).withFailureHandler(function(e){document.getElementById('attBody').innerHTML='<div class="toast err">'+esc(e.message)+'</div>'}).getAttendance(att.kind,att.date);
+}
+function drawRecent(){
+  var r=att.data.recent||[];
+  document.getElementById('recent').innerHTML=r.length?'<span class="note" style="align-self:center">Recent:</span>'+r.map(function(k){return '<button class="'+(k===att.date?'on':'')+'" onclick="pickDate(\''+k+'\')">'+prettyDate(k)+'</button>'}).join(''):'';
+}
+function drawAtt(){
+  var d=att.data,label=KINDS.filter(function(k){return k[0]===att.kind})[0][1];
+  var h='<div class="state '+(d.exists?'edit':'')+'">'+(d.exists?'<b>Editing</b> the '+label+' already saved for '+prettyDate(d.date)+'. Changes replace that entry, nothing gets double counted.':'<b>New</b> '+label+' for '+prettyDate(d.date)+'. Tap each wrestler who is here.')+'</div>'+
+   '<div class="tools"><button onclick="setAll(\'Present\')">Everyone here</button><button onclick="setAll(\'\')">Clear all</button><span class="count" id="attCount"></span></div>'+
+   '<div class="roster" id="roster"></div>'+
+   '<textarea class="nt" id="attNotes" placeholder="Notes (optional), e.g. who came in late" oninput="att.dirty=true">'+esc(d.notes)+'</textarea>'+
+   '<div class="tools"><button class="btn go" id="saveBtn" onclick="saveAtt()">Save Attendance</button><span class="note">Anyone not tapped is saved as Absent.</span></div><div id="attMsg"></div>';
+  document.getElementById('attBody').innerHTML=h;drawRoster();
+}
+function drawRoster(){
+  var n=0;
+  document.getElementById('roster').innerHTML=att.data.names.map(function(name,i){var p=att.marks[name]==='Present';if(p)n++;
+    return '<button class="'+(p?'p':'')+'" onclick="toggle('+i+')"><span>'+esc(name)+'</span><i>'+(p?'HERE':'—')+'</i></button>'}).join('');
+  document.getElementById('attCount').textContent=n+' / '+att.data.names.length+' here';
+}
+function toggle(i){var n=att.data.names[i];att.marks[n]=att.marks[n]==='Present'?'':'Present';att.dirty=true;drawRoster()}
+function setAll(v){att.data.names.forEach(function(n){att.marks[n]=v});att.dirty=true;drawRoster()}
+function saveAtt(){
+  var b=document.getElementById('saveBtn');b.disabled=true;b.textContent='Saving…';
+  google.script.run.withSuccessHandler(function(r){
+    att.dirty=false;att.data.exists=true;
+    if(att.data.recent.indexOf(r.date)<0){att.data.recent.unshift(r.date);att.data.recent.sort().reverse()}
+    drawRecent();
+    b.disabled=false;b.textContent='Save Attendance';
+    document.querySelector('#attBody .state').className='state edit';
+    document.querySelector('#attBody .state').innerHTML='<b>Editing</b> the '+esc(r.label)+' saved for '+prettyDate(r.date)+'. Changes replace that entry, nothing gets double counted.';
+    document.getElementById('attMsg').innerHTML='<div class="toast">Saved: '+r.present+' of '+r.total+' here for '+esc(r.label)+' on '+prettyDate(r.date)+'. Dashboard updated.</div>';
+    google.script.run.withSuccessHandler(function(d){if(!d.error&&d.role==='coach'){coachData=d;drawTable((document.querySelector('.search')||{}).value||'')}}).getPortalData();
+  }).withFailureHandler(function(e){b.disabled=false;b.textContent='Save Attendance';document.getElementById('attMsg').innerHTML='<div class="toast err">Not saved: '+esc(e.message)+'</div>'})
+  .saveAttendance(att.kind,att.date,att.marks,document.getElementById('attNotes').value);
+}
+
+function drawTable(q){
+  var cols=[['name','Wrestler'],['present','Pres.'],['absent','Abs.'],['pct','Prac %'],['openmat','Open Mat','hide-sm'],['kids','Kids','hide-sm'],['power','P/S','hide-sm'],['penalty','Pen.','hide-sm'],['total','Points'],['status','Status']];
+  var rows=coachData.wrestlers.filter(function(r){return r.name.toLowerCase().indexOf((q||'').toLowerCase())>-1});
+  rows.sort(function(a,b){var x=a[sortKey],y=b[sortKey],nx=num(x),ny=num(y);if(nx!=null&&ny!=null)return (nx-ny)*sortDir;return String(x).localeCompare(String(y))*sortDir});
+  var h='<table><tr>'+cols.map(function(c){return '<th class="'+(c[2]||'')+(c[0]!=='name'&&c[0]!=='status'?' r':'')+'" onclick="sortBy(\''+c[0]+'\')">'+c[1]+(sortKey===c[0]?(sortDir>0?' ▲':' ▼'):'')+'</th>'}).join('')+'</tr>';
+  rows.forEach(function(r){h+='<tr>'+cols.map(function(c){var v=r[c[0]];if(c[0]==='status')return '<td><span class="st '+stCls(v)+'">'+esc(v)+'</span></td>';return '<td class="'+(c[2]||'')+(c[0]!=='name'?' r':'')+'">'+(c[0]==='name'?'<b>'+esc(v)+'</b>':esc(v))+'</td>'}).join('')+'</tr>'});
+  document.getElementById('tbl').innerHTML=h+'</table><p class="note" style="margin-top:10px">Last checked '+esc(coachData.updated)+'.</p>';
+}
+function sortBy(k){if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=(k==='name'||k==='status')?1:-1}drawTable(document.querySelector('.search').value)}
+
+function fail(d){
+  app.innerHTML='<div class="msg"><h2>'+(d.error==='notfound'?'Almost there':'Sign in required')+'</h2><p>'+esc(d.message)+'</p>'+
+  (d.error==='domain'?'<p class="note">Sign out of '+esc(d.email)+' and sign in with your @'+esc(DOMAIN)+' account, then reload this page.</p>':'')+'</div>';
+}
+
+google.script.run.withSuccessHandler(function(d){
+  if(d.error)return fail(d);
+  if(d.role==='coach')return coach(d);
+  wrestler(d);
+}).withFailureHandler(function(e){fail({message:'Something went wrong loading your stats. Try reloading. ('+e.message+')'})}).getPortalData();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+// Your team's app settings. Fill these in once you've set up Google sign-in and deployed the Apps Script
+// (see SETUP.md). Until GOOGLE_IOS_CLIENT_ID and APPS_SCRIPT_DEPLOYMENT_ID are real, the app runs on built-in
+// SAMPLE DATA (made-up wrestlers) and never contacts Google or your sheet.
+
+// iOS OAuth client ID from Google Cloud (looks like 1234-abcd.apps.googleusercontent.com)
+GOOGLE_IOS_CLIENT_ID = PASTE_IOS_CLIENT_ID.apps.googleusercontent.com
+// The same ID reversed: com.googleusercontent.apps.1234-abcd
+GOOGLE_REVERSED_CLIENT_ID = com.googleusercontent.apps.PASTE_IOS_CLIENT_ID
+// The Apps Script "app API" deployment ID (the long ID in .../macros/s/<ID>/exec)
+APPS_SCRIPT_DEPLOYMENT_ID = PASTE_DEPLOYMENT_ID
